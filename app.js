@@ -4,20 +4,36 @@ document.getElementById('button2').addEventListener('click',getJson);
 
 document.getElementById('button3').addEventListener('click',getExternal)
 
-// Get text data
-function getText(){
-    fetch('test.txt')
-    .then(function(res){
-        return res.text();
+// Get text data original
+// function getText(){
+//     fetch('test.txt')
+//     .then(function(res){
+//         return res.text();
+//     })
+//     .then(function(data){
+//         console.log(data);
+//         document.getElementById('output').innerHTML = data;
+//     })
+//     .catch(function(err){
+//         console.log('error!');
+//     })
+// }
+
+// Get text data with error
+function getText() { 
+    fetch('test1.txt') 
+    .then(res => { 
+      if (!res.ok) { 
+       throw Error(res.status + ' ' + res.statusText); 
+      } 
+      return res.text(); 
     })
-    .then(function(data){
-        console.log(data);
-        document.getElementById('output').innerHTML = data;
+    .then(data => { 
+      console.log(data); 
+      document.getElementById('output').innerHTML = data; 
     })
-    .catch(function(err){
-        console.log('error!');
-    })
-}
+    .catch(err => console.log('' + err))
+   }
 
 // Get JSON data
 function getJson(){
